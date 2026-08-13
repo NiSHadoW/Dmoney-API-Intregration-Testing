@@ -67,3 +67,14 @@ The suite exercises the DMoney API end-to-end in sequence, chaining access token
 9. Customer02 makes a payment to Merchant
 
 Each step asserts the HTTP response status and relevant response data (tokens, IDs, phone numbers) before proceeding to the next.
+
+## Console Log Output
+
+<img width="1183" height="538" alt="image" src="https://github.com/user-attachments/assets/a0dbce99-d996-44f4-a84c-d14d3491d910" />
+
+<img width="1171" height="503" alt="image" src="https://github.com/user-attachments/assets/fff536fe-6bb9-4af2-9d26-693df020388b" />
+
+## Bash Tool Output
+
+<img width="1365" height="767" alt="image" src="https://github.com/user-attachments/assets/8732753d-b159-40b4-9906-e53a6f31c5be" />
+
