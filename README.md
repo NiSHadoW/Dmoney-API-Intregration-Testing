@@ -54,19 +54,70 @@ npx mocha Integration-Test/dmoney.spec.js
 
 ## Test Flow
 
-The suite exercises the DMoney API end-to-end in sequence, chaining access tokens and IDs between steps:
+The suite exercises the DMoney API end-to-end in a single sequential run, chaining access tokens and IDs from one step into the next:
 
-1. Admin & System login
-2. Merchant creation, login, OTP verification, and activation
-3. Agent creation, login, OTP verification, and activation
-4. System deposit to Agent
-5. Customer01 & Customer02 creation, login, OTP verification, and activation
-6. Agent deposit to Customer01
-7. Customer01 sends money to Customer02
-8. Customer01 cashes out via Agent
-9. Customer02 makes a payment to Merchant
+1. Admin Login
+2. Store Admin access token
+3. System Login
+4. Store System access token
+5. Create a Merchant
+6. Login Merchant account
+7. Verify Merchant OTP
+8. Store Merchant access token
+9. Store Merchant phone number and ID
+10. Update Merchant status (activate)
+11. Create an Agent
+12. Login Agent account
+13. Verify Agent OTP
+14. Store Agent access token
+15. Store Agent phone number and ID
+16. Update Agent status (activate)
+17. System deposits money to Agent
+18. Create Customer01
+19. Customer01 Login
+20. Verify Customer01 OTP
+21. Store Customer01 access token
+22. Store Customer01 phone number and ID
+23. Update Customer01 status (activate)
+24. Create Customer02
+25. Customer02 Login
+26. Verify Customer02 OTP
+27. Store Customer02 access token
+28. Store Customer02 phone number and ID
+29. Update Customer02 status (activate)
+30. Agent deposits money to Customer01
+31. Customer01 sends money to Customer02
+32. Customer01 cashes out money via Agent
+33. Customer02 makes a payment to Merchant
+34. Validate the response of every API call above (status code, response body, and token/ID presence)
 
-Each step asserts the HTTP response status and relevant response data (tokens, IDs, phone numbers) before proceeding to the next.
+Each step asserts the HTTP response status and relevant response data (tokens, IDs, phone numbers) before proceeding to the next, so a failure at any step surfaces exactly where the flow broke.
+
+### Flow Diagram
+
+```
+Admin Login
+    ↓
+System Login
+    ↓
+Create Merchant → Login + OTP → Activate
+    ↓
+Create Agent → Login + OTP → Activate
+    ↓
+System → Agent: Deposit 5,000 Tk
+    ↓
+Create Customer 1 → Login + OTP → Activate
+    ↓
+Create Customer 2 → Login + OTP → Activate
+    ↓
+Agent → Customer 1: Deposit 2,000 Tk
+    ↓
+Customer 1 → Customer 2: Send Money 1,000 Tk
+    ↓
+Customer 1 → Agent: Cash Out 500 Tk
+    ↓
+Customer 2 → Merchant: Payment 400 Tk
+```
 
 ## Console Log Output
 
