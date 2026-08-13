@@ -1,4 +1,4 @@
-# DMoney Integration Testing Assignment
+# DMoney API Integration Testing 
 
 Integration tests for the DMoney API, covering the full user lifecycle and transaction flow — from admin/system login through merchant, agent, and customer onboarding, to money transfers between them.
 
